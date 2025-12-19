@@ -16,3 +16,4 @@ fi
 echo "▶ Starting $JAR_FILE"
 
 nohup java -jar "$JAR_FILE" > "$LOG_FILE" 2>&1 &
+
