@@ -1,7 +1,6 @@
 #!/bin/bash
 
-APP_NAME=app
-PID=$(pgrep -f "$APP_NAME")
+PID=$(pgrep -f ".jar")
 
 if [ -z "$PID" ]; then
   echo "ℹ️ No running process found"
@@ -17,4 +16,5 @@ if ps -p $PID > /dev/null; then
   echo "⚠️ Force kill $PID"
   kill -9 $PID
 fi
+
 
