@@ -1,18 +1,19 @@
 #!/bin/bash
 
-for i in {1..20}
+for i in {1..10}
 do
-  CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/actuator/health || true)
+  STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/health)
 
-  if [ "$CODE" = "200" ]; then
-    echo "Application is healthy"
+  if [ "$STATUS" = "200" ]; then
+    echo "✅ Health check success"
     exit 0
   fi
 
-  echo "Waiting for application..."
+  echo "⏳ Waiting for server... ($i)"
   sleep 5
 done
 
-echo "Application failed health check"
+echo "❌ Health check failed"
 exit 1
+
 

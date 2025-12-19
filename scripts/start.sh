@@ -6,13 +6,13 @@ LOG_FILE=$APP_DIR/app.log
 
 cd $APP_DIR
 
-JAR=$(ls -1 build/libs/*.jar | grep -v plain | head -n 1)
+JAR_FILE=$(ls -1 *.jar | grep -v plain | head -n 1)
 
-if [ -z "$JAR" ]; then
-  echo "JAR not found" >> "$LOG_FILE"
+if [ -z "$JAR_FILE" ]; then
+  echo "❌ JAR file not found"
   exit 1
 fi
 
-echo "Starting $JAR" >> "$LOG_FILE"
+echo "▶ Starting $JAR_FILE"
 
-nohup java -jar "$JAR" >> "$LOG_FILE" 2>&1 &
+nohup java -jar "$JAR_FILE" > "$LOG_FILE" 2>&1 &

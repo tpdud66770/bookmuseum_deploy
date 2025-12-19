@@ -7,18 +7,19 @@ phases:
 
   pre_build:
     commands:
-      - ls -al
+      - echo "Start build"
       - chmod +x ./gradlew
-      - ./gradlew --version
 
   build:
     commands:
-      - ./gradlew clean build
-      - mkdir -p bundle/scripts
-      - cp appspec.yml bundle/
-      - cp -r scripts bundle/
-      - cp build/libs/*.jar bundle/
+      - ./gradlew clean build -x test
+
+  post_build:
+    commands:
+      - echo "Build completed"
 
 artifacts:
   files:
-    - bundle/**/*
+    - build/libs/*.jar
+    - appspec.yml
+    - scripts/**
