@@ -18,6 +18,7 @@ phases:
       - cp appspec.yml bundle/
       - cp -r scripts bundle/
       - cp build/libs/*.jar bundle/
+      - chmod -R +x bundle/scripts || true
 
 artifacts:
   files:
