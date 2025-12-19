@@ -17,9 +17,12 @@ phases:
   post_build:
     commands:
       - echo "Build completed"
+      - cp build/libs/*.jar app.jar
 
 artifacts:
   files:
     - appspec.yml
-    - scripts/**
-    - build/libs/*.jar
+    - stop.sh
+    - start.sh
+    - health_check.sh
+    - app.jar
