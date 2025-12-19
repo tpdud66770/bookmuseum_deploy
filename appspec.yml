@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 
 files:
-  - source: /
+  - source: demo-0.0.1.jar
     destination: /home/ec2-user/app
     overwrite: yes
 
@@ -14,17 +14,17 @@ permissions:
 
 hooks:
   ApplicationStop:
-    - location: scripts/stop.sh
+    - location: stop.sh
       timeout: 60
       runas: ec2-user
 
   ApplicationStart:
-    - location: scripts/start.sh
+    - location: start.sh
       timeout: 180
       runas: ec2-user
 
   ValidateService:
-    - location: scripts/health_check.sh
+    - location: health_check.sh
       timeout: 120
       runas: ec2-user
 
