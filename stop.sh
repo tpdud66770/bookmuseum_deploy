@@ -1,9 +1,15 @@
 #!/bin/bash
 
-PID=$(pgrep -f app.jar)
+PID=$(pgrep -f app.jar || true)
 
-[ -z "$PID" ] && exit 0
+if [ -z "$PID" ]; then
+  echo "No process to stop"
+  exit 0
+fi
 
-kill -15 $PID
+echo "Stopping PID: $PID"
+kill -15 $PID || true
 sleep 3
-kill -9 $PID 2>/dev/null
+kill -9 $PID || true
+
+exit 0
