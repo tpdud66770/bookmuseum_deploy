@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in {1..15}
+for i in {1..20}
 do
   STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/actuator/health)
 

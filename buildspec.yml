@@ -7,6 +7,7 @@ phases:
 
   pre_build:
     commands:
+      - echo "Start build"
       - chmod +x ./gradlew
 
   build:
@@ -15,18 +16,10 @@ phases:
 
   post_build:
     commands:
-      - rm -rf bundle
-      - mkdir -p bundle
-      - cp appspec.yml bundle/
-      - cp -r scripts bundle/
-      - cp build/libs/*.jar bundle/
-      - chmod -R +x bundle/scripts || true
-      - echo "=== bundle tree ==="
-      - ls -al bundle
-      - ls -al bundle/scripts
-      - ls -al bundle/*.jar
+      - echo "Build completed"
 
 artifacts:
-  base-directory: bundle
   files:
-    - '**/*'
+    - appspec.yml
+    - scripts/**
+    - build/libs/*.jar
