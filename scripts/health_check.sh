@@ -1,10 +1,10 @@
 #!/bin/bash
 
-for i in {1..10}
+for i in {1..20}
 do
-  STATUS=$(curl -s http://localhost:8080/actuator/health | grep UP)
+  CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/actuator/health || true)
 
-  if [ -n "$STATUS" ]; then
+  if [ "$CODE" = "200" ]; then
     echo "Application is healthy"
     exit 0
   fi
@@ -15,3 +15,4 @@ done
 
 echo "Application failed health check"
 exit 1
+
