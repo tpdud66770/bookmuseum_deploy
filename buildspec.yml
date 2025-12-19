@@ -5,13 +5,20 @@ phases:
     runtime-versions:
       java: corretto17
 
+  pre_build:
+    commands:
+      - ls -al
+      - chmod +x ./gradlew
+      - ./gradlew --version
+
   build:
     commands:
-      - chmod +x gradlew
-      - ./gradlew build
+      - ./gradlew clean build
+      - mkdir -p bundle/scripts
+      - cp appspec.yml bundle/
+      - cp -r scripts bundle/
+      - cp build/libs/*.jar bundle/
 
 artifacts:
   files:
-    - appspec.yml
-    - scripts/**/*
-    - build/libs/*.jar
+    - bundle/**/*
