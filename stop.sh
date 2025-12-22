@@ -15,7 +15,6 @@ else
   echo "No process to stop"
 fi
 
-# ⭐⭐⭐ 이 줄이 핵심 ⭐⭐⭐
 echo "Removing old app.jar"
 rm -f "$JAR_FILE"
 
