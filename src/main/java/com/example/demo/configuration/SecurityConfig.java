@@ -38,8 +38,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                         // preflight
-                        .requestMatchers("/actuator/**").permitAll()
-                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/health").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                         // 인증 없이 접근 가능
