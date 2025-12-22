@@ -1,15 +1,22 @@
 #!/bin/bash
+set -e
+
+APP_DIR=/home/ec2-user/app
+JAR_FILE=$APP_DIR/app.jar
 
 PID=$(pgrep -f app.jar || true)
 
-if [ -z "$PID" ]; then
+if [ -n "$PID" ]; then
+  echo "Stopping PID: $PID"
+  kill -15 $PID || true
+  sleep 3
+  kill -9 $PID || true
+else
   echo "No process to stop"
-  exit 0
 fi
 
-echo "Stopping PID: $PID"
-kill -15 $PID || true
-sleep 3
-kill -9 $PID || true
+# ⭐⭐⭐ 이 줄이 핵심 ⭐⭐⭐
+echo "Removing old app.jar"
+rm -f "$JAR_FILE"
 
 exit 0
