@@ -2,12 +2,9 @@ version: 0.0
 os: linux
 
 files:
-  - source: start.sh
+  - source: /
     destination: /home/ec2-user/app
-  - source: stop.sh
-    destination: /home/ec2-user/app
-  - source: health_check.sh
-    destination: /home/ec2-user/app
+    overwrite: yes
 
 permissions:
   - object: /home/ec2-user/app
