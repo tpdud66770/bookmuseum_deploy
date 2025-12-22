@@ -1,14 +1,10 @@
 #!/bin/bash
-set -e
 
-APP_DIR=/home/ec2-user/app
-LOG_FILE=$APP_DIR/app.log
-JAR_FILE=$APP_DIR/app.jar
+APP_DIR="/home/ec2-user/app"
+APP_NAME="app.jar"
 
-cd $APP_DIR
+echo "Starting application..."
 
-echo "▶ Starting app.jar"
-nohup java -jar "$JAR_FILE" > "$LOG_FILE" 2>&1 &
+nohup java -jar "$APP_DIR/$APP_NAME" > "$APP_DIR/app.log" 2>&1 &
 
-
-
+exit 0
