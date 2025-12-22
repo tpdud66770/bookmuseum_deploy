@@ -2,9 +2,12 @@ version: 0.0
 os: linux
 
 files:
-  - source: app.jar
+  - source: start.sh
     destination: /home/ec2-user/app
-    overwrite: yes
+  - source: stop.sh
+    destination: /home/ec2-user/app
+  - source: health_check.sh
+    destination: /home/ec2-user/app
 
 permissions:
   - object: /home/ec2-user/app
@@ -16,10 +19,22 @@ permissions:
       - file
 
 hooks:
+  BeforeInstall:
+    - location: stop.sh
+      timeout: 60
+      runas: ec2-user
+
   ApplicationStart:
     - location: start.sh
       timeout: 180
       runas: ec2-user
+
+  ValidateService:
+    - location: health_check.sh
+      timeout: 120
+      runas: ec2-user
+
+
 
 
 
