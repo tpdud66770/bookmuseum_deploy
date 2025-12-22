@@ -3,6 +3,6 @@ set -e
 
 APP_DIR=/home/ec2-user/app
 
-echo "🧹 cleaning old files"
-rm -f $APP_DIR/*.sh
+echo "🧹 cleaning old app"
+pkill -f app.jar || true
 rm -f $APP_DIR/app.jar
