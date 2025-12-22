@@ -22,7 +22,6 @@ phases:
 artifacts:
   files:
     - appspec.yml
-    - stop.sh
     - start.sh
-    - health_check.sh
     - app.jar
+
