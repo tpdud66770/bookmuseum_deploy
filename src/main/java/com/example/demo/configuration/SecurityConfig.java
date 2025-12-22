@@ -31,7 +31,6 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))   // ⭐ CORS 설정 추가
                 .formLogin(form -> form.disable())
                 .httpBasic(basic -> basic.disable())
-                .securityMatcher("/api/**" ,  "/actuator/**")
 
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
 
@@ -40,6 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // preflight
                         .requestMatchers("/actuator/**").permitAll()
+                        .requestMatchers("/").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                         // 인증 없이 접근 가능
