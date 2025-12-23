@@ -31,6 +31,12 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String uri = request.getRequestURI();
 
+        // ✅ 헬스체크는 무조건 통과
+        if (uri.equals("/health")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         // 회원 관련 API는 필터 패스
         if (uri.startsWith("/api/member/")) {
             filterChain.doFilter(request, response);
