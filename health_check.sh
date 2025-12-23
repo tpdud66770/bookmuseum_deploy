@@ -2,7 +2,7 @@
 
 for i in {1..20}
 do
-  STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/health)
+  STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/actuator/health)
 
   if [ "$STATUS" = "200" ]; then
     echo "✅ Health check success"
