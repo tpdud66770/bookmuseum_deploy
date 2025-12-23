@@ -19,7 +19,9 @@ import java.util.List;
 @RequestMapping("/api/books")
 @CrossOrigin("*")
 public class BookController {
-
+    
+    //배포전 승인 테스트
+    
     private final BookService bookService;
     private final MemberService memberService;
 
